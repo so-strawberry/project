@@ -1,3 +1,8 @@
+// Функция для возврата на начальную страницу
+function goBack() {
+    window.location.href = "index.html"; // Переход на index.html
+}
+
 // Массив сообщений от бота
 const botMessages = [
     "Привет! Давай начнем обучение.",
