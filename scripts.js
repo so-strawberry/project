@@ -1,4 +1,5 @@
-let messages = [
+// Массив сообщений от бота
+const botMessages = [
     "Привет! Давай начнем обучение.",
     "Это первое сообщение. Введите 'далее', чтобы продолжить.",
     "Это второе сообщение. Введите 'далее', чтобы продолжить.",
@@ -7,35 +8,58 @@ let messages = [
 
 let currentMessageIndex = 0;
 
+// Функция для старта чата
 function startChat() {
+    // Скрываем кнопку "Начнем"
     document.getElementById("start-button").style.display = "none";
+    // Показываем поле ввода
     document.getElementById("input-container").style.display = "flex";
-    displayMessage(messages[currentMessageIndex]);
+    // Отправляем первое сообщение от бота
+    sendBotMessage(botMessages[currentMessageIndex]);
 }
 
-function displayMessage(message) {
-    const chatLog = document.getElementById("chat-log");
-    chatLog.innerHTML += `<p><strong>Бот:</strong> ${message}</p>`;
+// Функция для отправки сообщения от бота
+function sendBotMessage(message) {
+    const chatWindow = document.getElementById("chat-window");
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message-bot");
+    messageElement.textContent = message;
+    chatWindow.appendChild(messageElement);
+    // Прокручиваем окно чата вниз
+    chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-function handleInput() {
-    const userInput = document.getElementById("user-input").value.toLowerCase();
-    const chatLog = document.getElementById("chat-log");
+// Функция для отправки сообщения от пользователя
+function sendMessage() {
+    const userInput = document.getElementById("user-input").value.trim();
+    if (userInput === "") return;
 
-    if (userInput === "далее") {
+    const chatWindow = document.getElementById("chat-window");
+
+    // Добавляем сообщение пользователя
+    const userMessageElement = document.createElement("div");
+    userMessageElement.classList.add("message-user");
+    userMessageElement.textContent = userInput;
+    chatWindow.appendChild(userMessageElement);
+
+    // Очищаем поле ввода
+    document.getElementById("user-input").value = "";
+
+    // Обрабатываем команды пользователя
+    if (userInput.toLowerCase() === "далее") {
         currentMessageIndex++;
-        if (currentMessageIndex < messages.length) {
-            displayMessage(messages[currentMessageIndex]);
+        if (currentMessageIndex < botMessages.length) {
+            sendBotMessage(botMessages[currentMessageIndex]);
         } else {
-            chatLog.innerHTML += `<p><strong>Бот:</strong> Обучение завершено!</p>`;
+            sendBotMessage("Обучение завершено!");
         }
-    } else if (userInput === "завершить") {
-        chatLog.innerHTML += `<p><strong>Бот:</strong> Обучение завершено досрочно!</p>`;
-        currentMessageIndex = messages.length; // Завершаем обучение
+    } else if (userInput.toLowerCase() === "завершить") {
+        sendBotMessage("Обучение завершено досрочно!");
+        currentMessageIndex = botMessages.length; // Завершаем обучение
     } else {
-        chatLog.innerHTML += `<p><strong>Вы:</strong> ${userInput}</p>`;
-        chatLog.innerHTML += `<p><strong>Бот:</strong> Неизвестная команда. Введите 'далее' или 'завершить'.</p>`;
+        sendBotMessage("Неизвестная команда. Введите 'далее' или 'завершить'.");
     }
 
-    document.getElementById("user-input").value = ""; // Очистка поля ввода
+    // Прокручиваем окно чата вниз
+    chatWindow.scrollTop = chatWindow.scrollHeight;
 }
