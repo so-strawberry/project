@@ -1,0 +1,68 @@
+/* Общие стили */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4); /* Градиентный фон */
+    font-family: Arial, sans-serif;
+}
+
+/* Контейнер для кнопок */
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr; /* Первая строка для кнопки "Обучение", вторая для остальных */
+    gap: 20px; /* Расстояние между кнопками */
+    max-width: 450px; /* Ширина контейнера */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Стили для всех кнопок */
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: #007bff; /* Синий цвет фона */
+    color: #fff; /* Белый текст */
+    border: none;
+    border-radius: 10px; /* Закругленные углы */
+    padding: 20px;
+    font-size: 18px;
+    text-align: center;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень */
+
+    
+}
+
+/* Кнопка "Обучение" */
+.large-button {
+    grid-row: 1; /* Первая строка */
+    width: 90%; /* Занимает всю ширину */
+}
+
+/* Контейнер для остальных кнопок */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+    margin-left: 15px; /* Отступы слева и справа */
+    margin-right: 15px ;
+    column-gap: 30px; /* Расстояние только между колонками */
+    row-gap: 15px; /* Расстояние только между строками */
+}
+
+/* Анимация при наведении */
+.button:hover {
+    transform: scale(1.05); /* Увеличение при наведении */
+    background-color: #0056b3; /* Темно-синий цвет при наведении */
+}
+
+/* Анимация при нажатии */
+.button:active {
+    transform: scale(0.95); /* Уменьшение при нажатии */
+}
