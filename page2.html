@@ -3,20 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Чат-бот</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Telegram-чат</title>
+    <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <div class="chat-container">
-        <div id="chat-log"></div>
-        <div id="start-button">
+    <div class="telegram-chat">
+        <!-- Шапка чата -->
+        <div class="chat-header">
+            <span>Чат с ботом</span>
+        </div>
+
+        <!-- Окно чата -->
+        <div class="chat-window" id="chat-window">
+            <!-- Сообщения будут добавляться сюда -->
+        </div>
+
+        <!-- Кнопка "Начнем" -->
+        <div class="start-button" id="start-button">
             <button onclick="startChat()">Начнем</button>
         </div>
-        <div id="input-container" style="display: none;">
-            <input type="text" id="user-input" placeholder="Введите команду...">
-            <button onclick="handleInput()">Отправить</button>
+
+        <!-- Поле ввода (появляется после нажатия "Начнем") -->
+        <div class="input-container" id="input-container" style="display: none;">
+            <input type="text" id="user-input" placeholder="Введите ваш ответ...">
+            <button onclick="sendMessage()">Отправить</button>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
